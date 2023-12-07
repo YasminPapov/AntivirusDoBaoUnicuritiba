@@ -1,18 +1,23 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+import os
 
-# Other files and folders
-.settings/
+def isFileMalicious(file_path):
+    try:
+        with open(file_path, "rb") as file:
+            fileContent = file.read()
+            if fileContent:
+                return True
+        return False
+    except FileNotFoundError:
+        print("Arquivo não encontrado")
+        return False
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+if __name__ == "__main__":
+    file_path = r"colar o caminho do arquivo AQUI"
+
+    if isFileMalicious(file_path):
+        print("Um possível arquivo malicioso foi detectado")
+        os.remove(file_path)
+        print("Arquivo deletado")
+    else:
+        print("Arquivo livre de vírus")
